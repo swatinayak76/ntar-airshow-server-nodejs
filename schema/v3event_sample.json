@@ -1,0 +1,245 @@
+{
+    "metadata": {
+        "env": "production",
+        "locale": "en-US",
+        "status": "publish",
+        "createdBy": "gFYUjN0K7nhCVkOWqjS61TV1TPO2",
+        "createdDate": 1614576486596,
+        "lastModifiedBy": "RmPioSu8VfVdTksdJJK7IR23vx73",
+        "lastModifiedDate": 1614576486596
+    },
+    "id": "fed38760-8faa-11eb-a3c6-0b2d36cd068c",
+    "partitionKey": "event",
+    "docType": "event",
+    "eventCode": "offset2",
+    "eventName": "Offset",
+    "eventStatus": "active",
+    "eventType": "music-event",
+    "eventLogo": [
+        {
+            "lastModifiedDate": 1616925014742,
+            "fileName": "eventlogo.PNG",
+            "createdDate": 1616925014742,
+            "contentType": "image/png",
+            "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Feventlogo.PNG"
+        }
+    ],
+    "loadingScreen": [
+        {
+            "lastModifiedDate": 1616925016415,
+            "fileName": "loadscreen.PNG",
+            "createdDate": 1616925016415,
+            "contentType": "image/png",
+            "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Floadscreen.PNG"
+        }
+    ],
+    "premiumflag": true,
+    "premiumEvent": {
+        "productId": "",
+        "eventEndDate": 1614576486596,
+        "eventStartDate": 1614576486596,
+        "purchaseFeatures": [
+            {
+                "feature": "",
+                "uniqueKey": ""
+            }
+        ]
+    },
+    "websites": [
+        {
+            "websiteId": "",
+            "websiteName": "",
+            "websiteLink": "",
+            "websiteLogo": [
+                {
+                    "lastModifiedDate": 1616925021455,
+                    "fileName": "web_0_image.PNG",
+                    "createdDate": 1616925021455,
+                    "contentType": "image/png",
+                    "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fweb_0_image.PNG"
+                }
+            ]
+        }
+    ],
+    "sponsors": [
+        {
+            "sponsorId": "",
+            "sponsorName": "AXR EXP",
+            "sponsorLogo": [
+                {
+                    "lastModifiedDate": 1616925021990,
+                    "fileName": "sponsos_0_logo.PNG",
+                    "createdDate": 1616925021990,
+                    "contentType": "image/png",
+                    "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fsponsos_0_logo.PNG"
+                }
+            ]
+        }
+    ],
+    "merch": [
+        {
+            "productId": "",
+            "productName": "Product Name",
+            "price": "0.00",
+            "purchaseLink": "",
+            "productLogo": [
+                {
+                    "lastModifiedDate": 1616925021720,
+                    "fileName": "product_logo.PNG",
+                    "createdDate": 1616925021720,
+                    "contentType": "image/png",
+                    "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fproduct_logo.PNG"
+                }
+            ]
+        }
+    ],
+    "experiences": [
+        {
+            "performer": {
+                "performerName": "Offset",
+                "performanceName": "AXR-EXP",
+                "featured": true,
+                "featuredImage": [
+                    {
+                        "lastModifiedDate": 1616925018855,
+                        "fileName": "featured_0_image.PNG",
+                        "createdDate": 1616925018855,
+                        "contentType": "image/png",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Ffeatured_0_image.PNG"
+                    }
+                ],
+                "startDate": 1614576486596,
+                "endDate": 1614576486596,
+                "performanceAudio": [
+                    {
+                        "lastModifiedDate": 1616925017951,
+                        "fileName": "p_0_audio.mp3",
+                        "createdDate": 1616925017951,
+                        "contentType": "audio/mpeg",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fp_0_audio.mp3"
+                    }
+                ],
+                "performanceVideo": [
+                    {
+                        "lastModifiedDate": 1616925016951,
+                        "fileName": "p_0_video.avi",
+                        "createdDate": 1616925016951,
+                        "contentType": "video/x-msvideo",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fp_0_video.avi"
+                    }
+                ],
+                "performanceThumbnail": [
+                    {
+                        "lastModifiedDate": 1616925016686,
+                        "fileName": "loadscreen.PNG",
+                        "createdDate": 1616925016686,
+                        "contentType": "image/png",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Floadscreen.PNG"
+                    }
+                ],
+                "fx": "smoke"
+            },
+            "placement": {
+                "pivot": [
+                    0.5,
+                    0.5
+                ],
+                "boundMax": [
+                    1,
+                    1
+                ],
+                "boundMin": [
+                    0,
+                    0
+                ],
+                "boundsHeight": 5,
+                "htsInFeet": true
+            },
+            "virtualVenue": {
+                "backgroundVideo": [
+                    {
+                        "lastModifiedDate": 1616925019126,
+                        "fileName": "backgroud_0_video.PNG",
+                        "createdDate": 1616925019126,
+                        "contentType": "image/png",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fbackgroud_0_video.PNG"
+                    }
+                ],
+                "loopable": false
+            },
+            "livestream": {
+                "endpoint": "",
+                "chromaKey": "#2ace42",
+                "rotation": "90"
+            }
+        },
+        {
+            "performer": {
+                "performerName": "Offset",
+                "performanceName": "AXR-EXP",
+                "featured": true,
+                "featuredImage": [],
+                "startDate": 1614576486596,
+                "endDate": 1614576486596,
+                "performanceAudio": [
+                    {
+                        "lastModifiedDate": 1616925020428,
+                        "fileName": "p_1_audio.mp3",
+                        "createdDate": 1616925020428,
+                        "contentType": "audio/mpeg",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fp_1_audio.mp3"
+                    }
+                ],
+                "performanceVideo": [
+                    {
+                        "lastModifiedDate": 1616925019656,
+                        "fileName": "p_1_video.avi",
+                        "createdDate": 1616925019656,
+                        "contentType": "video/x-msvideo",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Fp_1_video.avi"
+                    }
+                ],
+                "performanceThumbnail": [
+                    {
+                        "lastModifiedDate": 1616925019392,
+                        "fileName": "eventlogo.PNG",
+                        "createdDate": 1616925019392,
+                        "contentType": "image/png",
+                        "filepath": "https://ntarairshowdevsa.blob.core.windows.net/ntarairshowbbcont/fed38760-8faa-11eb-a3c6-0b2d36cd068c%2Feventlogo.PNG"
+                    }
+                ],
+                "fx": "smoke"
+            },
+            "placement": {
+                "pivot": [
+                    0.5,
+                    0.5
+                ],
+                "boundMax": [
+                    1,
+                    1
+                ],
+                "boundMin": [
+                    0,
+                    0
+                ],
+                "boundsHeight": 5,
+                "htsInFeet": true
+            },
+            "virtualVenue": {
+                "backgroundVideo": [],
+                "loopable": false
+            },
+            "livestream": {
+                "endpoint": "",
+                "chromaKey": "#2ace42",
+                "rotation": "90"
+            }
+        }
+    ],
+    "_rid": "tkI2ANmO3CYMAAAAAAAAAA==",
+    "_self": "dbs/tkI2AA==/colls/tkI2ANmO3CY=/docs/tkI2ANmO3CYMAAAAAAAAAA==/",
+    "_etag": "\"a9005833-0000-0100-0000-606051620000\"",
+    "_attachments": "attachments/",
+    "_ts": 1616925026
+}

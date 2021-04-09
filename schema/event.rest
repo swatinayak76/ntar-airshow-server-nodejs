@@ -1,0 +1,9 @@
+### Create a New Event
+http://localhost:3001/api/v1/event
+POST 
+
+### Update an Existing Event
+http://localhost:3001/api/v1/event
+PUT 
+
+#### 

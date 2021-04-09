@@ -1,0 +1,18 @@
+{  
+    /*****************Dev env*******************/
+    /*
+    "enviroment":"dev",
+    "containerName":"ntarairshowbbcont",
+    "database":"nt-ar-airshow-cosmosdb-dev-database",
+    "container":"airshowdbcont"
+    */
+    /*******************************************/
+
+    /*****************POC env*******************/
+    "enviroment":"poc",
+    "containerName":"nodejscrud1",
+    "database":"demodb",
+    "container":"event1"
+    /*******************************************/
+    
+}
