@@ -1,0 +1,31 @@
+{
+  "name": "ntar-airshow-server-nodejs",
+  "version": "1.0.0",
+  "description": " Crud Operation With Cosmos And Azure Storage",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "devStart": "nodemon single-server.js",
+    "start": "node server.js"
+  },
+  "author": "developer",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/cosmos": "^3.9.5",
+    "@azure/storage-blob": "^12.4.1",
+    "body-parser": "^1.19.0",
+    "cluster": "^0.7.7",
+    "config": "^3.3.3",
+    "connect-multiparty": "^2.2.0",
+    "custom-env": "^2.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.9.2",
+    "uuid": "^8.3.2",
+    "passport": "^0.3.2",
+    "passport-azure-ad": "^4.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }	
+}
