@@ -1,10 +1,11 @@
-const { v1: uuidv1 } = require("uuid");
 const { BlobServiceClient } = require("@azure/storage-blob");
-const config = require("config");
+var storage = require("@azure/storage-blob");
 const storageConnectionString = process.env.storageConnectionString
 const blobServiceClient = BlobServiceClient.fromConnectionString(
     storageConnectionString
 );
+const config = require("config");
+const { v1: uuidv1 } = require("uuid");
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const containerClient = blobServiceClient.getContainerClient(config.get("containerName"));
 const client = new CosmosClient(process.env.cosmosConnectionString);
@@ -13,142 +14,46 @@ const container = database.container(config.get("container"));
 
 //Create a new Event item 
 exports.create = async (req, res) => {
-    try {
-        let _eventLogo = [];
-        let _loadingScreen = [];
-        let { eventLogo, loadingScreen } = req.files;
-        let _payload = JSON.parse(req.body.payload);
+    try {   
+        
+        let payload = JSON.parse(req.body.payload);
+        let eventCode =  payload.eventCode;
+
+        if (!eventCode && eventCode.length < 1 ) {
+            ErrorCodeHandler.getErrorJSONData({ 'code': 7, 'res': res });
+            return;
+        }
+
         let id = uuidv1();
-        _payload.id = id;
-        _payload.partitionKey = "event";
-        _payload.docType = "event";
-        let type = { type: "create", id: _payload.id }
+        payload.id = id;
+        payload.partitionKey = "event";
+        payload.docType = "event";
+        let type = { type: "create", id: payload.id }
 
-        if (eventLogo) {
-            eventLogo = convert2Array(eventLogo)
-            for (let i = 0; i < eventLogo.length; i++) {
-                obj = await prepareObj(eventLogo[i], type)
-                _eventLogo.push(obj)
-            }
+        // Media files hanlder
+        if (req.files){
+
+            var mediafiles = req.files;
+            //console.log(mediafiles);
+            var result = [];
+    
+            for(var i in mediafiles){
+                obj = await prepareObj(mediafiles [i], type)
+                result.push(obj)            
+            }        
+            //console.log(result);
+            payload.mediaFiles = result;
         }
-
-        if (loadingScreen) {
-            loadingScreen = convert2Array(loadingScreen)
-            for (let i = 0; i < loadingScreen.length; i++) {
-                obj = await prepareObj(loadingScreen[i], type)
-                _loadingScreen.push(obj)
-            }
-        }
-
-        for (let index = 0; index < _payload.experiences.length; index++) {
-            const performance = _payload.experiences[index].performer;
-            const Virtualvenue = _payload.experiences[index].virtualVenue;
-            let video = req.files[`performances_${index}_video`];
-            let audio = req.files[`performances_${index}_audio`];
-            let featuredImage = req.files[`featured_${index}_image`];
-            let bg_video = req.files[`background_${index}_video`];
-            let ThumbnailImage =
-                req.files[`performances_${index}_thumbnailImage`];
-
-            if (ThumbnailImage) {
-                performance.performanceThumbnail = [];
-                ThumbnailImage = convert2Array(ThumbnailImage)
-                for (let i = 0; i < ThumbnailImage.length; i++) {
-                    obj = await prepareObj(ThumbnailImage[i], type)
-                    performance.performanceThumbnail.push(obj)
-                }
-            }
-
-            if (video) {
-                performance.performanceVideo = [];
-                video = convert2Array(video)
-                for (let i = 0; i < video.length; i++) {
-                    obj = await prepareObj(video[i], type)
-                    performance.performanceVideo.push(obj)
-                }
-            }
-
-            if (audio) {
-                performance.performanceAudio = [];
-                audio = convert2Array(audio)
-                for (let i = 0; i < audio.length; i++) {
-                    obj = await prepareObj(audio[i], type)
-                    performance.performanceAudio.push(obj)
-                }
-
-            }
-
-            if (featuredImage) {
-                performance.featuredImage = [];
-                featuredImage = convert2Array(featuredImage)
-                for (let i = 0; i < featuredImage.length; i++) {
-                    obj = await prepareObj(featuredImage[i], type)
-                    performance.featuredImage.push(obj)
-                }
-            }
-
-            if (bg_video) {
-                Virtualvenue.backgroundVideo = [];
-                bg_video = convert2Array(bg_video)
-                for (let i = 0; i < bg_video.length; i++) {
-                    obj = await prepareObj(bg_video[i], type)
-                    Virtualvenue.backgroundVideo.push(obj)
-                }
-            }
-        }
-
-        // website handler ...
-        for (let index = 0; index < _payload.websites.length; index++) {
-            const website = _payload.websites[index]
-            let web_logo = req.files[`website_${index}_logo`];
-            if (web_logo) {
-                website.websiteLogo = []
-                web_logo = convert2Array(web_logo)
-                for (let i = 0; i < web_logo.length; i++) {
-                    obj = await prepareObj(web_logo[i], type)
-                    website.websiteLogo.push(obj)
-                }
-            }
-        }
-
-        // merch handler
-        for (let index = 0; index < _payload.merch.length; index++) {
-            const merch = _payload.merch[index]
-            let merch_logo = req.files[`product_${index}_logo`];
-            if (merch_logo) {
-                merch.productLogo = []
-                merch_logo = convert2Array(merch_logo)
-                for (let i = 0; i < merch_logo.length; i++) {
-                    obj = await prepareObj(merch_logo[i], type)
-                    merch.productLogo.push(obj)
-                }
-            }
-        }
-
-        // sponsor hanlder
-        for (let index = 0; index < _payload.sponsors.length; index++) {
-            const sponsor = _payload.sponsors[index]
-            let sponsor_logo = req.files[`sponsor_${index}_logo`];
-            if (sponsor_logo) {
-                sponsor.sponsorLogo = []
-                sponsor_logo = convert2Array(sponsor_logo)
-                for (let i = 0; i < sponsor_logo.length; i++) {
-                    obj = await prepareObj(sponsor_logo[i], type)
-                    sponsor.sponsorLogo.push(obj)
-                }
-            }
-        }
-
-        _payload.eventLogo = _eventLogo;
-        _payload.loadingScreen = _loadingScreen;
-        const { resource: createdItem } = await container.items.create(_payload);
+        
+        const { resource: createdItem } = await container.items.create(payload);
         res.status(200).json({
-            message: "Event: " + _payload.eventCode + " Created Successfully",
+            message: "Event: " + payload.eventCode + " Created Successfully",
             status: "success",
             code: 200,
             data: createdItem
         })
     } catch (err) {
+        console.log("error is",err)
         if (err.message.includes("id already exists in the system")) {
             ErrorCodeHandler.getErrorJSONData({ 'code': 5, 'res': res });
             return;
@@ -161,129 +66,40 @@ exports.create = async (req, res) => {
 //Update an Event item 
 exports.update = async (req, res) => {
     try {
-        let _eventLogo = [];
-        let _loadingScreen = [];
-        let { eventLogo, loadingScreen } = req.files;
-        let _payload = JSON.parse(req.body.payload);
-        console.log("elogo", eventLogo)
-        console.log("loadscreen", loadingScreen)
-        let type = { type: "update", id: _payload.id }
-        if (eventLogo) {
-            eventLogo = convert2Array(eventLogo)
-            for (let i = 0; i < eventLogo.length; i++) {
-                obj = await prepareObj(eventLogo[i], type, lastModified(_payload.eventLogo[i]))
-                _eventLogo.push(obj)
-            }
+        //let _eventLogo = [];
+        //let _loadingScreen = [];
+        //let { eventLogo, loadingScreen } = req.files;
+        let payload = JSON.parse(req.body.payload);     
+        let type = { type: "update", id: payload.id }
+
+        // Media files hanlder
+        if (req.files){
+
+            var mediafiles = req.files;
+            //console.log(mediafiles);
+            var result = [];
+    
+            for(var i in mediafiles){
+                //let inFieldName = payload.mediaFiles.
+                obj = await prepareObj(mediafiles [i],  type, lastModified(mediafiles[i]))
+                result.push(obj)            
+            }        
+            //console.log(result);
+            payload.mediaFiles = result;
         }
 
-        if (loadingScreen) {
-            loadingScreen = convert2Array(loadingScreen)
-            for (let i = 0; i < loadingScreen.length; i++) {
-                obj = await prepareObj(loadingScreen[i], type, lastModified(_payload.loadingScreen[i]))
-                _loadingScreen.push(obj)
-            }
-        }
-        // experiences handler
-        for (let index = 0; index < _payload.experiences.length; index++) {
-            const performance = _payload.experiences[index].performer;
-            const Virtualvenue = _payload.experiences[index].virtualVenue;
-            let video = req.files[`performances_${index}_video`];
-            let audio = req.files[`performances_${index}_audio`];
-            let featuredImage = req.files[`featured_${index}_image`];
-            let bg_video = req.files[`background_${index}_video`];
-            let ThumbnailImage =
-                req.files[`performances_${index}_thumbnailImage`];
+        //const Virtualvenue = _payload.experiences[index].virtualVenue;
+        //let video = req.files[`performances_${index}_video`];
 
-            if (ThumbnailImage) {
-                ThumbnailImage = convert2Array(ThumbnailImage)
-                for (let i = 0; i < ThumbnailImage.length; i++) {
-                    obj = await prepareObj(ThumbnailImage[i], type, lastModified(performance.performanceThumbnail[i]))
-                    performance.performanceThumbnail.push(obj)
-                }
-            }
-
-            if (video) {
-                video = convert2Array(video)
-                for (let i = 0; i < video.length; i++) {
-                    obj = await prepareObj(video[i], type, lastModified(performance.performanceVideo[i]))
-                    performance.performanceVideo.push(obj)
-                }
-            }
-
-            if (audio) {
-                audio = convert2Array(audio)
-                for (let i = 0; i < audio.length; i++) {
-                    obj = await prepareObj(audio[i], type, lastModified(performance.performanceAudio[i]))
-                    performance.performanceAudio.push(obj)
-                }
-
-            }
-
-            if (featuredImage) {
-                featuredImage = convert2Array(featuredImage)
-                for (let i = 0; i < featuredImage.length; i++) {
-                    obj = await prepareObj(featuredImage[i], type, lastModified(performance.featuredImage[i]))
-                    performance.featuredImage.push(obj)
-                }
-            }
-
-            if (bg_video) {
-                bg_video = convert2Array(bg_video)
-                for (let i = 0; i < bg_video.length; i++) {
-                    obj = await prepareObj(bg_video[i], type, lastModified(Virtualvenue.backgroundVideo[i]))
-                    Virtualvenue.backgroundVideo.push(obj)
-                }
-            }
-        }
-
-        // website handler ...
-        for (let index = 0; index < _payload.websites.length; index++) {
-            const website = _payload.websites[index]
-            let web_logo = req.files[`website_${index}_logo`];
-            if (web_logo) {
-                web_logo = convert2Array(web_logo)
-                for (let i = 0; i < web_logo.length; i++) {
-                    obj = await prepareObj(web_logo[i], type, lastModified(website.websiteLogo[i]))
-                    website.websiteLogo.push(obj)
-                }
-            }
-        }
-
-        // merch handler
-        for (let index = 0; index < _payload.merch.length; index++) {
-            const merch = _payload.merch[index]
-            let merch_logo = req.files[`product_${index}_logo`];
-            if (merch_logo) {
-                merch_logo = convert2Array(merch_logo)
-                for (let i = 0; i < merch_logo.length; i++) {
-                    obj = await prepareObj(merch_logo[i], type, lastModified(merch.productLogo[i]))
-                    merch.productLogo.push(obj)
-                }
-            }
-        }
-
-        // sponsor handler
-        for (let index = 0; index < _payload.sponsors.length; index++) {
-            const sponsor = _payload.sponsors[index]
-            let sponsor_logo = req.files[`sponsor_${index}_logo`];
-            if (sponsor_logo) {
-                sponsor_logo = convert2Array(sponsor_logo)
-                for (let i = 0; i < sponsor_logo.length; i++) {
-                    obj = await prepareObj(sponsor_logo[i], type, lastModified(sponsor.sponsorLogo[i]))
-                    sponsor.sponsorLogo.push(obj)
-                }
-            }
-        }
-
-        _payload.eventLogo = _eventLogo.length > 0 ? _eventLogo : _payload.eventLogo;
-        _payload.loadingScreen = _loadingScreen.length > 0 ? _loadingScreen : _payload.loadingScreen;
+        //_payload.eventLogo = _eventLogo.length > 0 ? _eventLogo : _payload.eventLogo;
+        //_payload.loadingScreen = _loadingScreen.length > 0 ? _loadingScreen : _payload.loadingScreen;
 
         const { resource: updatedItem } = await container.items.container
             //.item(_payload.id, _payload.eventCode)
-            .item(_payload.id, 'event')
-            .replace(_payload);
+            .item(payload.id, 'event')
+            .replace(payload);
         res.status(200).json({
-            message: "Event: " + _payload.eventCode + " Updated! Successfully",
+            message: "Event: " + payload.eventCode + " Updated! Successfully",
             data: updatedItem
         })
     } catch (err) {
@@ -405,6 +221,7 @@ exports.fetch = async (req, res) => {
 
 let prepareObj = async (fileObject, info, date) => {
     let set = {
+        fieldName: fileObject.fieldName,
         lastModifiedDate: Date.now(),
         fileName: fileObject.originalFilename,
         lastModifiedBy: undefined,
@@ -434,7 +251,36 @@ async function uploadToAzureStorage(file, id) {
     const blobName = id + "/" + file.name;
     const contentType = file.type;
     const filePath = file.path; //This is where you get the file path.
+
+    const accountname ="ntarairshowdevsa";
+    const key = "1+rL1OCok5HOoszNQPsrCh+NzmXbJG8XGisYbrRGFdfvSTwnm3Ts/pWtYe0qpxvfqqeeyrVNmfk7D9/Vrar6UQ==";
+    const signedpermissions = 'rwdlac';
+    const signedservice = 'b';
+    const signedresourcetype = 'sco'; 
+    const signedProtocol = 'https';
+    const signedversion = '2020-02-10';
+    const cerds = new storage.StorageSharedKeyCredential(accountname,key);
+    var startDate = new Date();
+    var expiryDate = new Date();
+    startDate.setTime(startDate.getTime() - 5*60*1000);
+    expiryDate.setTime(expiryDate.getTime() + 24*60*60*1000);
+    expiryDate.setTime(expiryDate.getTime() + 24*60*60*1000);
+    var result = storage.generateAccountSASQueryParameters({
+      expiresOn : expiryDate,
+      permissions: storage.AccountSASPermissions.parse(signedpermissions),
+      protocol: storage.SASProtocol.Https,
+      resourceTypes: storage.AccountSASResourceTypes.parse(signedresourcetype).toString(),
+      services: storage.AccountSASServices.parse(signedservice).toString(),
+      startsOn: startDate,
+      version:signedversion
+    },cerds).toString();
+    console.log(result);
+
+
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
     const uploadBlobResponse = await blockBlobClient.uploadFile(filePath);
-    return blockBlobClient.url;
+
+    const sasUrl= blockBlobClient.url+"?"+result;
+    console.log(sasUrl);
+    return sasUrl;
 }

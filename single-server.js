@@ -2,8 +2,9 @@
 let express = require('express');
 // Import Body parser
 let bodyParser = require('body-parser');
+var winston = require('winston'); // for transports.Console
+let expressWinston = require('express-winston');
 
-let passport = require('passport');
 
 
 // console.log(oauth);
@@ -15,11 +16,7 @@ const config = require("config");
 let app = express();
 
 // configure environment variable
-require ('custom-env').env(config.get("enviroment"))
-
-require("./app/config/strategies/azure_Oauth")();
-
-app.use(passport.initialize());
+require('custom-env').env(config.get("enviroment"))
 
 
 // Adding Error Code Handler global
@@ -27,6 +24,7 @@ global.ErrorCodeHandler = require('./app/handlers/errorCode');
 
 // routes defined here
 const eventRoutes = require("./app/routes/events.routes")
+const userRoutes = require("./app/routes/user.routes")
 
 app.use(bodyParser.json({ limit: '100mb' }))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -41,27 +39,32 @@ app.use((req, res, next) => {
     next()
 })
 
+const httpTransportOptions = {
+    host: 'http-intake.logs.datadoghq.com',
+    path: `/v1/input/${process.env.DATADOG}?ddsource=nodejs&service=azureapp`,
+    ssl: true
+  };
+
+//  enable routers logging
+app.use(expressWinston.logger({
+    transports: [
+        new winston.transports.Http(httpTransportOptions),
+    ],
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.json()
+    ),
+    meta: true,
+    msg: "HTTP {{req.method}} {{req.url}}",
+    expressFormat: true,
+    colorize: false,
+    ignoreRoute: function (req, res) { return false; }
+}));
+
 app.use("/airshow/v1/events", eventRoutes);
+app.use("/airshow/v1/auth", userRoutes)
 //server health check
 //app.get('/', (req, res) => res.send('Ok'));
-
-// API endpoint exposed
-app.get("/",
-    passport.authenticate('oauth-bearer', {session: false}),
-    (req, res) => {
-        console.log('Validated claims: ', req.authInfo);
-
-        // Service relies on the name claim.  
-        res.status(200).json({
-            'name': req.authInfo['name'],
-            'issued-by': req.authInfo['iss'],
-            'issued-for': req.authInfo['aud'],
-            'scope': req.authInfo['scp']
-        });
-    }
-);
-
-
 
 var port = process.env.PORT || 5000;
 

@@ -1,0 +1,166 @@
+{
+	"metadata": {
+		"env": "production",
+		"locale": "en-US",
+		"publishStatus": "publish",
+		"createdBy": "gFYUjN0K7nhCVkOWqjS61TV1TPO2",
+		"createdDate": 1614576486596,
+		"lastModifiedBy": "RmPioSu8VfVdTksdJJK7IR23vx73",
+		"lastModifiedDate": 1614576486596
+	},
+	"id": "",
+	"partitionKey": "",
+	"docType": "",
+	"eventType": "music-event",
+	"virtualVenueEnv": "",
+	"eventCode": "offset11",
+	"eventName": "Offset11",
+	"eventStatus": "active",
+	"eventLogo": [],
+	"loadingScreen": [],
+	"premiumflag": true,
+	"premiumEvent": {
+		"productId": "",
+		"eventEndDate": 1614576486596,
+		"eventStartDate": 1614576486596,
+		"purchaseFeatures": [{
+			"feature": "",
+			"uniqueKey": ""
+		}]
+	},
+	"websites": [{
+		"websiteId": "",
+		"websiteName": "",
+		"websiteLink": "",
+		"websiteLogo": []
+	}],
+	"sponsors": [{
+		"sponsorId": "",
+		"sponsorName": "AXR EXP",
+		"sponsorLogo": []
+	}],
+	"merch": [{
+		"productId": "",
+		"productName": "Product Name",
+		"price": "0.00",
+		"purchaseLink": "",
+		"productLogo": []
+	}],
+	"experiences": [{
+		"experience": {
+			"hologramData": {
+				"talentName": "Offset",
+				"experienceName": "AXR-EXP",
+				"isLiveStream": false,
+				"featured": true,
+				"featuredImage": [],
+				"startDate": 1614576486596,
+				"endDate": 1614576486596,
+				"experienceAudio": [],
+				"experienceVideo": [],
+				"experienceThumbnail": [],
+				"fx": "smoke"
+			},
+			"placement": {
+				"pivot": [0.5, 0.5],
+				"boundMax": [1, 1],
+				"boundMin": [0, 0],
+				"boundsHeight": 5,
+				"htsIn": "Feet"
+			},
+			"virtualVenue": {
+				"backgroundVideo": [],
+				"loopable": false
+			},
+			"livestream": {
+				"endpoint": "",
+				"chromaKey": "#2ace42",
+				"rotation": "90"
+			}
+		}
+	}],
+	"mediaFiles": [
+	    {
+			{
+				"fieldName": "eventLogo_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath":"https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "loadingScreen_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "websiteLogo_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "sponsorLogo_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "productLogo_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "featuredImage_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "experienceAudio_0",
+				"fileName": "AR_Hologram_Offset.mp3",
+				"contentType": "audio/mpeg",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "experienceVideo_0",
+				"fileName": "AR_Hologram_01_Offset.mp4",
+				"contentType": "video/mp4",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "experienceThumbnail_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			},
+			{
+				"fieldName": "backgroundVideo_0",
+				"fileName": "logo.png",
+				"contentType": "image/png",
+				"createdDate": 1615406660469,
+				"lastModifiedDate": 1615406660469,
+				"filepath": "https://stdemoapppoceus001.blob.core.windows.net/nodejscrud1/761abe40-a128-11eb-9a7a-ad35b97ca7e4%2Flogo.png?sv=2020-02-10&ss=b&srt=sco&spr=https&st=2021-04-19T15%3A56%3A11Z&se=2021-04-21T16%3A01%3A11Z&sp=rwdlac&sig=%2Fqn0JNezV6aJHdtEvPM8SxtYcnTHc4KkoKFB2QPqBhY%3D"
+			}
+		}
+	]
+}
